@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Student Info</title>
+    <script type="text/javascript">
+        "use strict";
+
+        function clock() {
+            let today = new Date();
+            let h = today.getHours();
+            let m = today.getMinutes();
+            let s = today.getSeconds();
+            document.getElementById('clock').innerHTML =
+                h + ":" + m + ":" + s;
+
+            setTimeout(clock, 1000);
+        }
+
+        function handleForm() {
+            
+            let formValue = {
+                Coutry_code: document.getElementById("code").value,
+                Country_Name: document.getElementById("name").value,
+                Country_Area: document.getElementById("area").value,
+                Main_city: document.getElementById("cities").value,
+                Capital_City: document.getElementById("Capital").value,
+                Population: document.getElementById("Population").value,
+
+            };
+
+            
+
+
+
+            if ((formValue.Coutry_code != '') & (formValue.Country_Name != '') & (formValue.Country_Area != '') & (formValue.Main_city != '') & (formValue.Capital_City != '')) {
+                const result = document.getElementById("result");
+                result.classList.add("result");
+
+                result.innerHTML = JSON.stringify(formValue);
+            }
+            document.getElementById("my_form").reset();
+            
+        }
+    </script>
+
+</head>
+
+<body onload="clock()">
+    <!--/* margin-right */-->
+    <div class="row" style="display: flex; align-items: center; align-content: center; flex-direction:column;">
+
+        <div class="form"
+            style="border: thick double #32a1ce; font-family: Helvetica, Arial, sans-serif;font-size: 12px; padding:50px;">
+            <center>
+                <div id="clock"></div>
+            </center>
+            <div>
+                <h3>
+                    <center>Country Details</center>
+                </h3>
+            </div>
+            <form onsubmit="event.preventDefault(); handleForm();" id="my_form">
+                <label for="id"><b> Country Code: </b> </label><br>
+                <input type="number" id="code" name="code" required> <br><br>
+
+                <label for="name"><b>Country Name: </b></label><br>
+                <input type="text" id="name" name="name" required><br><br>
+
+                <label for="number"><b>Country Area: </b></label><br>
+                <input type="number" id="area" name="area" required><br><br>
+
+                <label for="Population"><b>Population: </b></label><br>
+                <input type="number" id="Population" name="Population" required><br><br>
+
+                <label for="cities"><b>Main Cities: </b></label><br>
+                <select id="cities" name="cities" required>
+                    <option value="Tokyo">Tokyo</option>
+                    <option value="Kyoto">Kyoto</option>
+                    <option value="Osaka">Osaka</option>
+                    <option value="Kathmandu">Kathmandu</option>
+                    <option value="Pokhara">Pokhara</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="New york">New york</option>
+                    <option value="Colombo">Colombo</option>
+                    <option value="Dhaka">Dhaka</option>
+                </select><br><br>
+
+
+                <label for="Capital"><b>Capital City: </b></label> <br>
+                <input type="checkbox" id="Capital" name="Capital" value="Kathmandu" checked> Kathmandu <br>
+                <input type="checkbox" id="Capital" name="Capital" value="Tokyo">Tokyo <br>
+                <input type="checkbox" id="Capital" name="Capital" value="Colombo"> Colombo <br>
+                <input type="checkbox" id="Capital" name="Capital" value="Washington, D.C."> Washington, D.C. <br>
+                <input type="checkbox" id="Capital" name="Capital" value="Dhaka"> Dhaka<br>
+                <input type="checkbox" id="Capital" name="Capital" value="Delhi"> Delhi
+                <br> <br>
+                <input type="reset" value="Reset" style="-webkit-text-fill-color: green;">
+                <input type="Submit" value="Submit" style="-webkit-text-fill-color: blue;">
+
+            </form>
+        </div>
+
+        <br> <br>
+        <div id="result">
+        </div>
+    </div>
+</body>
+
+</html>
